@@ -12,8 +12,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = order::all();
-    return view('home', ['order' => $orders]);
+        $order = order::all();
+    return view('home', ['order' => $order]);
     }
 
     /**
@@ -28,28 +28,24 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'fullname' => 'required|string',
-        'price' => 'required|numeric',
-        'product' => 'required|string',
-        'sku' => 'required|string',
-        'source' => 'required|in:user,woocommerce',
-        'custom_order_num' => 'required|string', // Add validation rule for custom_order_num
-    ]);
-    $input = $request->all();
-
-    // Ensure 'order_num' is not set by the user
-    unset($input['order_num']);
-
-    // Ensure 'custom_order_num' is set to a default value
-    $input['custom_order_num'] = ' '; // Replace 'DEFAULT_VALUE' with your desired default value
-
-    // Create a new order
-    $order = order::create($input);
+    {
+        // Ensure 'custom_order_num' is set based on your form field name
+        $customOrderNum = $request->input('custom_order_num');
+    
+        $input = $request->all();
+        $order = Order::create($input);
+    
+        // Set the 'custom_order_num' value
+        $order->update(['custom_order_num' => $customOrderNum]);
+    
+        return redirect('order')->with('flash_message', 'Order added successfully');
+    }
 
     
-}
+
+    
+    
+
 
 
     /**
@@ -86,6 +82,7 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        order::destroy($id);
+        return redirect('order')->with('flash_message','order deleted');
     }
 }

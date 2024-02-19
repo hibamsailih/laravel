@@ -9,8 +9,8 @@
         <form action="{{ route('order.store') }}" method="POST">
             {{ csrf_field() }}
             
-            <label for="order_num">Custom Order Num</label><br>
-            <input type="number" name="order_num" id="order_num" class="form-control"><br>
+            <label for="custom_order_num">Custom Order Num</label><br>
+            <input type="number" name="custom_order_num" id="custom_order_num" class="form-control"><br>
 
             <label for="fullname">Full Name</label><br>
             <input type="text" name="fullname" id="fullname" class="form-control"><br>

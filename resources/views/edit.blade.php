@@ -11,9 +11,9 @@
         {!! csrf_field() !!}
         @method('PATCH')
         <label for="">Order custome number</label><br>
-        <input type="number" class="form-control" name="fullname" id="fullname" value="{{$order->custom_order_num}}" /><br>
+        <input type="number" name="custom_order_num" id="custom_order_num" value="{{ $order->custom_order_num }}" /><br>
         <label for="">Full Name</label><br>
-        <input type="number" class="form-control" name="fullname" id="fullname" value="{{$order->fullname}}" /><br>
+        <input type="text" class="form-control" name="fullname" id="fullname" value="{{$order->fullname}}" /><br>
         <label for="">Price</label><br>
         <input type="text" class="form-control" name="price" id="price" value="{{$order->price}}" /><br>
         <label for="">Product</label><br>

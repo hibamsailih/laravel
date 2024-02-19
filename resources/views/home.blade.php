@@ -55,7 +55,11 @@
                                         <td>
                                              <a href="{{url('/order/' . $item->id)}}" title="view order" style="text-decoration:none"> <button class="btn btn-info btn-sm"> View </button> </a>
                                             <a href="{{url('/order/' . $item->id . '/edit')}}" title="edit order" style="text-decoration:none"> <button class="btn btn-primary btn-sm"> Edit </button> </a>
-                                            <a href="" title="delete order" style="text-decoration:none"> <button class="btn btn-danger btn-sm"> Delete </button> </a>
+                                            <form method="POST" action="{{url('/order/' . $item->id)}}" accept-charset="UTF-8" style="display: inline">
+                                                {{method_field('DELETE')}}
+                                                @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm" title="delete order" onclick="return confirm('confirm delete')">Delete</button>
+                                        </form>
                                         </td> 
                                     @endforeach
                                 </tbody>

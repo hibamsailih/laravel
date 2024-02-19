@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_num');
-            $table->string('custom_order_num')->default('');
+            $table->string('custom_order_num');
             $table->string('fullname');
             $table->decimal('price');
             $table->string('product');
